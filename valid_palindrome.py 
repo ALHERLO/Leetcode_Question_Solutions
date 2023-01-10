@@ -1,0 +1,27 @@
+# SOLUTION TO THE PROBLEM VALID PALINDROME ON GITHUB
+
+class Solution(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+
+        s2 = [i.lower() for i in s if i.isalnum()]
+        p2 = len(s2)-1
+        if s2 == [] or len(s2) == 1:
+            return True
+        if p2 <= 0:
+            return False
+
+        for i in range(len(s2)):
+
+            if s2[i] == s2[p2]:
+                # print("pointer 1:", s2[i], "pointer2:", s2[p2])
+                p2 -= 1
+            else:
+                return False
+
+        return True
+
+
