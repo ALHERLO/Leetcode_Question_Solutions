@@ -1,26 +1,33 @@
 #SOLUTION TO 3SUM USING TWO POINTERS TECHNIQUE
 
-nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -1]
+nums = [-1,0,1,2,-1,4, -4]
+# [-4, -1, -1, 0, 1, 2, 4]
 
-i, j = 0, (len(nums) - 1)
-
+nums2 = sorted(nums)
+j, k = 0, (len(nums) - 1)
 triplets = []
 
-print(i, j)
+for i in range(len(nums2)):
+    print("STARTING LOOP ---------------------------------")
+    j, k = i+1, (len(nums) - 1)
+    diff = -nums2[i]
+    print("target sum = ", diff)
+    while j < k:
+        print("analysing:", nums2[i], nums2[j], nums2[k])
+        if nums2[j] + nums2[k] > diff:
+             k -= 1
+             print("Decrementing k")
+        elif nums2[j] + nums2[k] < diff:
+             j += 1
+             print("incrementing j")
+        else:
+            print("entering else")
+            if nums2[i] != nums2[j] and nums2[i] != nums2[k]:
+                triplets.append([nums2[i], nums2[j], nums2[k]])
+                print("APPENDING:", nums2[i], nums2[j], nums2[k])
+                break
+            else:
+                break
 
-while j >= i :
-    print("i:", nums[i], "      j:", nums[j])
-    i += 1
-    j -= 1
-    k = 0
-    while k < len(nums) - 1:
-
-        if k == i or k == j:
-            k += 1
-        print("k: ", nums[k])
-        if nums[i] + nums[j] + nums[k] == 0 and i != j and i != k and j != k:
-            triplets.append([nums[i], nums[j], nums[k]])
-            print()
-        k += 1
 
 print(triplets)
