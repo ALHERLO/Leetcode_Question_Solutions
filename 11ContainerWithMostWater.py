@@ -1,17 +1,15 @@
-res = set()
-maxheight = height[len(height) - 1]
+#LINEAR TIME SOLUTION O(N)
 
-for i in range(0, len(height)):
-    j = len(height) - 1
-    if height[i] < height[i - 1]:
-        continue
+res = 0
+l, r = 0, len(height) - 1
 
-    while j > i:
-        if height[j] >= maxheight:
-            if height[j] < height[i]:
-                res.add((j - i) * (height[j]))
-            else:
-                res.add((j - i) * (height[i]))
-        j -= 1
+while l < r:
+    area = (r - l) * min(height[l], height[r])
+    res = max(res, area)
 
-return max(res)
+    if height[l] < height[r]:
+        l += 1
+    else:
+        r -= 1
+
+return res
